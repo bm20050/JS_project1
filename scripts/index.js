@@ -1,3 +1,4 @@
+// 주사위 번호선택
 const showDice = () => {
     const n = Math.floor(Math.random() * 6) + 1;
     const s1 = document.querySelector("#s1");
@@ -27,14 +28,32 @@ const domUpdate = () => {
     const bt1 = document.querySelector("#bt1");
     const bt2 = document.querySelector("#bt2");
     let num;
+    
     bt1.addEventListener("click", () => {
         num = showDice();
+        document.querySelector("form").reset();
+        show("none", "block", "none", "none", "block");
     });
-    bt2.addEventListener("click", () => {
-        var radios = document.getElementsByName("num");
-        var selected = Array.from(radios).find(radio => radio.checked);
-        //alert(selected.value);
 
+    //주사위 번호 결과 확인 
+    bt2.addEventListener("click", () => {
+        // const radios = document.querySelectorAll("input[type=radio]");
+        
+        // //사용자가 선택한 숫자
+        // let usern;
+        // for (let r of radios) {
+        //     if (r.checked) {
+        //         usern = r.value;
+        //         break;
+        //         //console.log(r);
+        //     }
+        // }
+        // console.log(usern);
+
+        const radios = document.getElementsByName("num");
+        const selected = Array.from(radios).find(radio => radio.checked);
+        console.log(selected.value);
+        // 숫자로 이루어진 문자열을 숫자로 변환 if(num === parseInt(selected).value){}
         if (num == selected.value) {
             s3.innerHTML = `<img src = "./images/o.png">`;
         }
@@ -47,6 +66,6 @@ const domUpdate = () => {
 }
 //DOM 로드가 된 후 
 document.addEventListener("DOMContentLoaded", () => {
-    show("none", "block", "none", "block", "block");
+    show("none", "none", "none", "block", "none");
     domUpdate();
 });
